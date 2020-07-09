@@ -145,6 +145,210 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/10/2020-7-10%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="曾叶鸿">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="叶鸿的hexo博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/10/2020-7-10%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url"> 2020.7.10学习笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-10 02:10:56 / 修改时间：02:44:10" itemprop="dateCreated datePublished" datetime="2020-07-10T02:10:56+08:00">2020-07-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>StringBuffer 类是线程安全的，多线程的时候用<br>StringBuilder线程不安全，但执行效率搞，单线程的时候用</p>
+<p>字符串操作会开辟大量内存，在循环中应避免字符串操作</p>
+<p>println的操作对象不是字符串时会默认调用object的toString方法<br>可在类中重写toString方法进行覆盖进而控制pringln的输出</p>
+<p>无特殊情况下，类属性建议设为私有，定义set，get方法作为接口进行修改</p>
+<p>构造函数一般设为public方便调用</p>
+<p>类是对概念的抽象，接口是对功能的归纳</p>
+<p>子类重写父类方法时不要缩小访问权限（失传问题）</p>
+<p>final关键字修饰的方法不能被继承</p>
+<p>一般不重写finalize方法</p>
+<p>多态定义：同方法对于不同输入有不同的输出<br>重载：多次定义方法，每次定义的参数不同（数量，类型）<br>覆盖：子类定义相同返回值，相同参数的方法 实现多态</p>
+<p>构造函数能重载不能覆盖<br>this（）指本类（构造函数中可用来调用其他构造函数）<br>super（）指父类（此处不带参数，子类构造函数无内容自动调用）</p>
+<p>多态好处是可以隔离修改，影响范围小，容易添加删除修改</p>
+<p>随机存取就是直接存取，即可以通过下标直接访问。</p>
+<p>循环链表使用尾指针，可以方便查找头和尾。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B01%E2%80%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="曾叶鸿">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="叶鸿的hexo博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B01%E2%80%9C/" class="post-title-link" itemprop="url">数据结构笔记1“</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-09 00:59:08 / 修改时间：01:08:24" itemprop="dateCreated datePublished" datetime="2020-07-09T00:59:08+08:00">2020-07-09</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>数据结构分为逻辑结构和物理结构</p>
+<p>逻辑结构分为四种<br>集合 线性 树形 图形</p>
+<p>物理结构分为两种<br>顺序 链式</p>
+<p>算法的时间复杂度是基本操作数关于输入规模的函数<br>一般用大O记法，以最坏情况为标准<br>大O记法：只看n趋于无穷时最高阶的项（忽略常数）</p>
+<p>线性表</p>
+<p>线性表的长度&lt;数组的长度=线性表储存空间的长度<br>数组长度一般不可变</p>
+<p>线性表的基本操作有<br>初始化<br>判断是否为空<br>清空表<br>返回下标i对应的值<br>查找元素十分存在，返回下标<br>i处插入元素<br>i处删除元素<br>返回线性表的长度</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/08/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="曾叶鸿">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="叶鸿的hexo博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/08/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/" class="post-title-link" itemprop="url">java学习笔记2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-08 00:00:40 / 修改时间：00:29:48" itemprop="dateCreated datePublished" datetime="2020-07-08T00:00:40+08:00">2020-07-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>函数定义时用于传参的符号叫形式参数，简称形参，不需要在函数内部传递的参数叫实参</p>
+<p>java类支持4中访问区分符</p>
+<p>默认（friendly）:    同包可调用，子类不继承<br>public            同包可调用，子类继承<br>private            同包不可调用，子类不继承<br>protect            同包不可调用，子类可继承</p>
+<p>创建类需要用到new运算符<br>如 Student zeng = new Student()<br>左边是声明一个类<br>右边用new运算符创建一个类<br>Student()是与类同名的成员函数（构造符函数）（可在类中自定义，也可以不定义使用系统的默认）</p>
+<p>静态变量在类的对象创建前就可以通过类名进行访问</p>
+<p>这里不小心用ctrl+Z退出了vi编辑器 查找后发现fg加数字可以恢复</p>
+<p>静态函数只能访问静态变量和自身定义的变量</p>
+<p>使用逻辑表达式时注意最好不要在逻辑表达式中进行数值计算过程<br>因为：有时逻辑表达式进行完左边的运算后就返回值了不再进行右边的运算，若在右边有运算则会被直接跳过出现短路的问题</p>
+<p>java定义的常量会被java虚拟机优化<br>相同的常量会指向相同的内存<br>因此虽然常量间的  ==  运算是指内存是否相等，<br>但是相同的常量经过  ==  运算还是会返回True</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/07/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -170,7 +374,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-07-07 01:01:39 / 修改时间：01:11:39" itemprop="dateCreated datePublished" datetime="2020-07-07T01:01:39+08:00">2020-07-07</time>
+              <time title="创建时间：2020-07-07 01:01:39 / 修改时间：01:15:34" itemprop="dateCreated datePublished" datetime="2020-07-07T01:01:39+08:00">2020-07-07</time>
             </span>
 
           
@@ -184,7 +388,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>今天开始我觉得要找一份计算机相关的工作<br>准备从java学起，期间同时会去学习数据结构等科班学习的东西<br>在此记录每天所学，顺便激励自己不要荒废时间。</p>
+          <p>今天开始我决定要找一份计算机相关的工作<br>准备从java学起，期间同时会去学习数据结构等科班学习的东西<br>在此记录每天所学，顺便激励自己不要荒废时间。</p>
 <hr>
 <p>从书本上看到以找工作为目标的学习可以“学面结合”<br>先去多家公司投递简历，了解面试问题，面试题目<br>了解面试岗位的重点学习内容，再专注学习那方面。</p>
 <p>因此学习的时候不比深究每个细枝末节，学习主干框架，再根据需求重点突破</p>
@@ -351,7 +555,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
