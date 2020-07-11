@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>叶鸿的hexo博客</title>
+  <title>KMP模式匹配算法  | 叶鸿的hexo博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="叶鸿的hexo博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="Abstract:匹配是字符串中的一个重要操作朴素模式的匹配算法效率十分低下，假设主串和匹配串的长度分别为m和n则朴素模式匹配算法的时间复杂度达到$O(m*n)$ 而KMP模式匹配算法时间复杂度可以达到$O(m)$仅仅只需遍历一次主串即可完成匹配 所以让我们来看看KMP模式匹配算法是怎么实现的吧！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KMP模式匹配算法 ">
+<meta property="og:url" content="http://yoursite.com/2020/07/11/KMP%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="叶鸿的hexo博客">
+<meta property="og:description" content="Abstract:匹配是字符串中的一个重要操作朴素模式的匹配算法效率十分低下，假设主串和匹配串的长度分别为m和n则朴素模式匹配算法的时间复杂度达到$O(m*n)$ 而KMP模式匹配算法时间复杂度可以达到$O(m)$仅仅只需遍历一次主串即可完成匹配 所以让我们来看看KMP模式匹配算法是怎么实现的吧！">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-11T15:48:36.000Z">
+<meta property="article:modified_time" content="2020-07-11T17:43:02.205Z">
 <meta property="article:author" content="曾叶鸿">
 <meta name="twitter:card" content="summary">
   
@@ -151,16 +155,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-KMP模式匹配算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-KMP模式匹配算法" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/11/KMP%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/">KMP模式匹配算法 </a>
+    <h1 class="article-title" itemprop="name">
+      KMP模式匹配算法 
     </h1>
   
 
@@ -176,9 +178,32 @@
         <p>Abstract:<br>匹配是字符串中的一个重要操作<br>朴素模式的匹配算法效率十分低下，假设主串和匹配串的长度分别为m和n<br>则朴素模式匹配算法的时间复杂度达到$O(m*n)$</p>
 <p>而KMP模式匹配算法时间复杂度可以达到$O(m)$<br>仅仅只需遍历一次主串即可完成匹配</p>
 <p>所以让我们来看看KMP模式匹配算法是怎么实现的吧！</p>
-        
-          <a class="article-more-a" href="/2020/07/11/KMP%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/#more">more >></a>
-        
+<a id="more"></a>
+<p>另i为主串上的指针，j为匹配串上的指针<br>在朴素模式匹配算法中，如果已经匹配了多个字符后发现下一个字符不匹配后<br>会进行一个很蠢的操作，就是把i指针回退，其实i指针的回退操作完全是多余的</p>
+<p>我们来看下面这种情况<br>      i<br>a b c d e f g<br>a b c z<br>      j</p>
+<p>主串”abcdefg” 与 “abcz” 进行匹配出现以上情况(d与z不匹配)<br>这时朴素模式匹配算法会将i指针退回b上<br>但我们分析一下这个过程：<br>此时bc已经与匹配串中的bc匹配过了，而bc又不等于a<br>我们再拿a去与主串中的bc去比较没有任何意义</p>
+<p>这时又会产生一个问题：<br>如果已经成功匹配的字符串中有重复字母怎么办</p>
+<p>比如这种情况<br>        i<br>a b a b a b e<br>a b a b e<br>        j</p>
+<p>如果直接把如果直接把j指针移动到第一个a上与主串匹配<br>那显然就把我们所需要的结果给忽略掉了</p>
+<p>但此时我们还是可以不移动i，只要把j的指针移动到第三个a上就能不忽略任何一种情况</p>
+<p>所以只要我们找到了j移动的规律，就可以只遍历一遍主串完成字符串的匹配算法</p>
+<hr>
+<p>我们发现j下一步要移动的位置只与j指针此时的数值有关<br>那么我们可以构造一个函数next(j)来实现这个操作<br>next(j)的功能 ：<br>当要匹配字符串时第j个字符不匹配时，i指针不动，j指针要移动到的下一个坐标<br>可以发现next(j)的数值与已匹配字符串的前缀后缀的“相似度”有关</p>
+<p>有了next(j)我们来梳理一下KMP算法的计算过程<br>当字符匹配或j=0时：<br>i指针和j指针同时+1</p>
+<p>当字符串不匹配时：(此时会调用next(j)函数)<br>    当第1个字符就不匹配：<br>        我们令next(j)=0,这样下次循环可以使i指针+1进行下一轮匹配<br>    非第一个字符匹配时：<br>        调用next(j)函数赋值给j</p>
+<p>这样形成一个循环<br>若跳出循环时达到一定条件我们就可以得到所求下标i的值</p>
+<p>现在只要定义了next()函数，完成我们的算法了<br>前面说过发现next(j)的数值与已匹配字符串的前缀后缀的“相似度”有关<br>我们发现计算某j处对应的next(j)值其实就是前缀与后缀字符串的匹配过程<br>我们需要返回的值就是前缀后缀匹配的长度+1<br>比如”ababe”当abab匹配而e不匹配时，此时前缀ab与后缀ab相同<br>他们的长度为2，则下一次要到的坐标就是2+1=3，也就是第三个字母a处</p>
+<p>那么怎么求前缀后缀的匹配长度呢？<br>定义j处后缀为除了j以为之前的部分字符<br>为了方便理解我们定义前缀的指针为p，后缀指针即为j(p指针指向当子串第j个字符与主串不匹配时，j指针的去向)<br>我们要求的 next(j)函数 就是后缀指针 j 停在每个位置时 p指针的位置<br>此时前缀就成了我们要匹配的子串，整个字符串就成了主串</p>
+<p>对于每个j<br>当后缀与前缀匹配成功或者（p==0）时：<br>    j++(后缀指针向后移动一格：j处的值匹配成功与j处的后缀无关，与j+1处的后缀有关)<br>    p++(p是即将要被赋值的跳回位置,肯定不是跳回有相同字符的地方)<br>    next(j)=p</p>
+<p>当后缀与前缀匹配不成功时：<br>    此时是子串（前缀）与主串匹配失败，我们知道子串的指针需要移动(p指针)<br>    移动到哪里呢？<br>    next(p)    </p>
+<p>我们知道已经理解了next(1)=0<br>所以上述循环一定能完成<br>就这样我们递归的定义了next(j)<br>也就完成了我们KMP模式匹配算法的介绍</p>
+<hr>
+<p>但是，KMP模式匹配算法其实还能继续改进</p>
+<p>我们观察字符串abababc,并在下面标出了next(j)的值<br>      a b a b a b a<br>  j   1 2 3 4 5 6 7<br>n(j)  0 1 1 2 3 4 5 </p>
+<p>我们如果再j=7时不匹配 也就是i指针对应的字符不等于 a<br>会跳回j=5    继续进行比较 然而j=5对应的字符串也是 a<br>如果多几个在7位置的不匹配字符那每次都要进行从7到5到到3到1的多余计算<br>我们希望这个计算只进行一次</p>
+<p>因此可以把这一步加在next函数中来改进next函数</p>
+<p>在next(j) = p 这一步<br>可以加一步判断，判断下一位字符是否匹配<br>如果匹配 则把 p 对应的next(p)赋值给next(j)<br>因为此时p指针对应的值和j指针对应的值相同，把p指针对应的值赋给j多进行一次比较毫无意义(j指针最后还是要再调用next(j)变为next(p) )，不如直接在next函数中处理了，这样可以有效减少当上面例子的情况出现后next()被调用的次数。</p>
+
       
 
       
@@ -200,16 +225,75 @@
 
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/11/KMP%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/11/KMP%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/10/java%E7%9A%84%E6%8C%87%E9%92%88/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java的指针</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -229,478 +313,14 @@
 
 
 
-
   
-    <article id="post-java的指针" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/10/java%E7%9A%84%E6%8C%87%E9%92%88/">java的指针</a>
-    </h1>
   
 
-        
-        <a href="/2020/07/10/java%E7%9A%84%E6%8C%87%E9%92%88/" class="archive-article-date">
-  	<time datetime="2020-07-10T12:42:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>java中的赋值语句传递的不都是形参</p>
-<p>只有8中基本类型传递的参数使形参<br>其余的类通过赋值语句传递的都是地址都是实参</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Node tmp = head;</span><br><span class="line">        <span class="keyword">while</span> (tmp.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            tmp = tmp.next;</span><br><span class="line">        &#125;</span><br><span class="line">        tmp.next = newNode;</span><br></pre></td></tr></table></figure>
-<p>这里head 将自己的地址传递给tmp<br>后面tmp的next属性被修改的同时，head也被修改</p>
-<p>相当于c中的</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Node * tmp = &amp;head</span><br></pre></td></tr></table></figure>
-<p>当*tmp被修改相当于修改head</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java学习//" class="article-tag-list-link color2">java学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/10/java%E7%9A%84%E6%8C%87%E9%92%88/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2020-7-10学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/10/2020-7-10%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"> 2020.7.10学习笔记</a>
-    </h1>
   
 
-        
-        <a href="/2020/07/10/2020-7-10%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-07-09T18:10:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>StringBuffer 类是线程安全的，多线程的时候用<br>StringBuilder线程不安全，但执行效率搞，单线程的时候用</p>
-<p>字符串操作会开辟大量内存，在循环中应避免字符串操作</p>
-<p>println的操作对象不是字符串时会默认调用object的toString方法<br>可在类中重写toString方法进行覆盖进而控制pringln的输出</p>
-<p>无特殊情况下，类属性建议设为私有，定义set，get方法作为接口进行修改</p>
-<p>构造函数一般设为public方便调用</p>
-<p>类是对概念的抽象，接口是对功能的归纳</p>
-<p>子类重写父类方法时不要缩小访问权限（失传问题）</p>
-<p>final关键字修饰的方法不能被继承</p>
-<p>一般不重写finalize方法</p>
-<p>多态定义：同方法对于不同输入有不同的输出<br>重载：多次定义方法，每次定义的参数不同（数量，类型）<br>覆盖：子类定义相同返回值，相同参数的方法 实现多态</p>
-<p>构造函数能重载不能覆盖<br>this（）指本类（构造函数中可用来调用其他构造函数）<br>super（）指父类（此处不带参数，子类构造函数无内容自动调用）</p>
-<p>多态好处是可以隔离修改，影响范围小，容易添加删除修改</p>
-<p>随机存取就是直接存取，即可以通过下标直接访问。</p>
-<p>循环链表使用尾指针，可以方便查找头和尾。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/10/2020-7-10%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数据结构笔记1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B01/">数据结构笔记1“</a>
-    </h1>
   
 
-        
-        <a href="/2020/07/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B01/" class="archive-article-date">
-  	<time datetime="2020-07-08T16:59:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>数据结构分为逻辑结构和物理结构</p>
-<p>逻辑结构分为四种<br>集合 线性 树形 图形</p>
-<p>物理结构分为两种<br>顺序 链式</p>
-<p>算法的时间复杂度是基本操作数关于输入规模的函数<br>一般用大O记法，以最坏情况为标准<br>大O记法：只看n趋于无穷时最高阶的项（忽略常数）</p>
-<p>线性表</p>
-<p>线性表的长度&lt;数组的长度=线性表储存空间的长度<br>数组长度一般不可变</p>
-<p>线性表的基本操作有<br>初始化<br>判断是否为空<br>清空表<br>返回下标i对应的值<br>查找元素十分存在，返回下标<br>i处插入元素<br>i处删除元素<br>返回线性表的长度</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B01/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java学习笔记2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/08/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/">java学习笔记2</a>
-    </h1>
-  
-
-        
-        <a href="/2020/07/08/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/" class="archive-article-date">
-  	<time datetime="2020-07-07T16:00:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>函数定义时用于传参的符号叫形式参数，简称形参，不需要在函数内部传递的参数叫实参</p>
-<p>java类支持4中访问区分符</p>
-<p>默认（friendly）:    同包可调用，子类不继承<br>public            同包可调用，子类继承<br>private            同包不可调用，子类不继承<br>protect            同包不可调用，子类可继承</p>
-<p>创建类需要用到new运算符<br>如 Student zeng = new Student()<br>左边是声明一个类<br>右边用new运算符创建一个类<br>Student()是与类同名的成员函数（构造符函数）（可在类中自定义，也可以不定义使用系统的默认）</p>
-<p>静态变量在类的对象创建前就可以通过类名进行访问</p>
-<p>这里不小心用ctrl+Z退出了vi编辑器 查找后发现fg加数字可以恢复</p>
-<p>静态函数只能访问静态变量和自身定义的变量</p>
-<p>使用逻辑表达式时注意最好不要在逻辑表达式中进行数值计算过程<br>因为：有时逻辑表达式进行完左边的运算后就返回值了不再进行右边的运算，若在右边有运算则会被直接跳过出现短路的问题</p>
-<p>java定义的常量会被java虚拟机优化<br>相同的常量会指向相同的内存<br>因此虽然常量间的  ==  运算是指内存是否相等，<br>但是相同的常量经过  ==  运算还是会返回True</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/08/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java学习笔记1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/07/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/">java学习笔记1</a>
-    </h1>
-  
-
-        
-        <a href="/2020/07/07/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/" class="archive-article-date">
-  	<time datetime="2020-07-06T17:01:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天开始我决定要找一份计算机相关的工作<br>准备从java学起，期间同时会去学习数据结构等科班学习的东西<br>在此记录每天所学，顺便激励自己不要荒废时间。</p>
-<hr>
-<p>从书本上看到以找工作为目标的学习可以“学面结合”<br>先去多家公司投递简历，了解面试问题，面试题目<br>了解面试岗位的重点学习内容，再专注学习那方面。</p>
-<p>因此学习的时候不比深究每个细枝末节，学习主干框架，再根据需求重点突破</p>
-<hr>
-<p>我决定在半个月内掌握大部分内容<br>并已经写好的大致计划</p>
-<hr>
-<p>今天学到的新东西：</p>
-<p>三目运算符<br>表达式1？表达式2：表达式3<br>作用：判断表达式1的布尔值，若为真输出表达式2，否则输出表达式3<br>使用情景：当if语句较简单是可以用三目运算符代替</p>
-<p>封装类型的==判断的是内存地址是否相同，equals方法才是比较数值<br>经常使用封装类型来进行数据类型的转换</p>
-<p>位运算直接针对计算机的二进制，运算效率比一般算法高</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/07/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-几何直观理解二元函数梯度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/04/%E5%87%A0%E4%BD%95%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3%E4%BA%8C%E5%85%83%E5%87%BD%E6%95%B0%E6%A2%AF%E5%BA%A6/">几何直观理解二元函数梯度度</a>
-    </h1>
-  
-
-        
-        <a href="/2020/07/04/%E5%87%A0%E4%BD%95%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3%E4%BA%8C%E5%85%83%E5%87%BD%E6%95%B0%E6%A2%AF%E5%BA%A6/" class="archive-article-date">
-  	<time datetime="2020-07-04T09:20:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>许多同学在学习高数时不能理解为什么梯度公式所表示的方向是函数变化率最大的方向<br>我在这里写一些我自己的理解，希望对大家有所帮助</p>
-<hr>
-<p>以二元函数为例子</p>
-<p>我们研究的是二元函数上某点的变化率，x，y的变化是一个无穷小量<br>对应f(x,y)的变化也是一个无穷小量，因此(x,y)附近点对应的f(x,y)的值可以等于图中切面上的值</p>
-<p>那么问题转换成了已知三维坐标中平面上一点，要找到变化率最大的方向</p>
-<hr>
-<p>我们以(x,y)为起点，沿每个方向走相同的距离，观察f(x,y)的变化<br>f(x,y)变化最大的方向即为我们要找的梯度的方向</p>
-<p>因为前面已经把f(x,y)简化成了一个平面，所以沿某个方向的运动时f(x,y)的变化就可以转化为沿x方向运动产生的变化和沿y方向运动产生的变化的线性叠加</p>
-<p>沿x方向运动dx导致z=f(x,y)的变化大小为<script type="math/tex">dz=\frac{\partial z}{\partial x}dx</script><br>沿y方向运动dy导致z=f(x,y)的变化大小为<script type="math/tex">dz=\frac{\partial z}{\partial y}dy</script></p>
-<p>因为沿每个方向要走相同的距离因此对dx与dy的要求是<script type="math/tex">(dx)^2 +(dy)^2 = c</script>(c为常数）</p>
-<p>这样求变化率最大的方向的问题就转换成了</p>
-<p><script type="math/tex">dz=\frac{\partial z}{\partial x}dx + \frac{\partial z}{\partial y}dy</script>在约束条件<script type="math/tex">(dx)^2 +(dy)^2 = c</script>下的极值问题</p>
-<hr>
-<p>这个问题可以用拉格朗日乘数法求解，最后得出dx与dy的比值为z对x，y偏导数的比值<br>但这样不够直观体现不出它的几何意义</p>
-<p>这里可以把dz右端的公式看成<script type="math/tex">(\frac{\partial z}{\partial x}, \frac{\partial z}{\partial y})</script>与<script type="math/tex">(dx,dy)</script>两个向量的乘积<br>如果我们令c=1，则问题转化为“单位圆上的哪个向量与成<script type="math/tex">(\frac{\partial z}{\partial x}, \frac{\partial z}{\partial y})</script>的点积最大”</p>
-<p>那么显然当他们方向相同或者说对应坐标成比例时最大</p>
-<p>这样也就可以理解为什么梯度单位向量i，j的系数是z对x和y的偏导数了</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">abc</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/04/%E5%87%A0%E4%BD%95%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3%E4%BA%8C%E5%85%83%E5%87%BD%E6%95%B0%E6%A2%AF%E5%BA%A6/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -723,8 +343,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
