@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 高数 | 叶鸿的hexo博客</title>
+  <title>C语言预处理功能 | 叶鸿的hexo博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="叶鸿的hexo博客">
-<meta property="og:url" content="http://yoursite.com/tags/%E9%AB%98%E6%95%B0/index.html">
+  <meta name="description" content="简介C语言中有很多#打头，回车结尾的命令，这些是C语言的预处理命令，预处理命令不能被编译器所识别，但会在编译前由专门的预处理程序进行转换。 这篇文章会简单介绍C语言的预处理功能，希望对大家有帮助">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言预处理功能">
+<meta property="og:url" content="http://yoursite.com/2020/07/18/C%E8%AF%AD%E8%A8%80%E9%A2%84%E5%A4%84%E7%90%86%E5%8A%9F%E8%83%BD/index.html">
 <meta property="og:site_name" content="叶鸿的hexo博客">
+<meta property="og:description" content="简介C语言中有很多#打头，回车结尾的命令，这些是C语言的预处理命令，预处理命令不能被编译器所识别，但会在编译前由专门的预处理程序进行转换。 这篇文章会简单介绍C语言的预处理功能，希望对大家有帮助">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-17T16:57:07.000Z">
+<meta property="article:modified_time" content="2020-07-17T17:58:52.230Z">
 <meta property="article:author" content="曾叶鸿">
+<meta property="article:tag" content="C语言">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="叶鸿的hexo博客" type="application/atom+xml">
@@ -143,60 +148,240 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-C语言预处理功能" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/04/%E5%87%A0%E4%BD%95%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3%E4%BA%8C%E5%85%83%E5%87%BD%E6%95%B0%E6%A2%AF%E5%BA%A6/" class="archive-article-date">
-  	<time datetime="2020-07-04T09:20:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-04</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/04/%E5%87%A0%E4%BD%95%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3%E4%BA%8C%E5%85%83%E5%87%BD%E6%95%B0%E6%A2%AF%E5%BA%A6/">几何直观理解二元函数梯度度</a>
+    <h1 class="article-title" itemprop="name">
+      C语言预处理功能
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/07/18/C%E8%AF%AD%E8%A8%80%E9%A2%84%E5%A4%84%E7%90%86%E5%8A%9F%E8%83%BD/" class="archive-article-date">
+  	<time datetime="2020-07-17T16:57:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>C语言中有很多#打头，回车结尾的命令，这些是C语言的预处理命令，预处理命令不能被编译器所识别，但会在编译前由专门的预处理程序进行转换。</p>
+<h2 id="这篇文章会简单介绍C语言的预处理功能，希望对大家有帮助"><a href="#这篇文章会简单介绍C语言的预处理功能，希望对大家有帮助" class="headerlink" title="这篇文章会简单介绍C语言的预处理功能，希望对大家有帮助"></a>这篇文章会简单介绍C语言的预处理功能，希望对大家有帮助</h2><a id="more"></a>
+<p>预处理功能有</p>
+<ul>
+<li>宏定义</li>
+<li>文件包含</li>
+<li>条件编译</li>
+</ul>
+<hr>
+<h3 id="宏定义"><a href="#宏定义" class="headerlink" title="宏定义"></a>宏定义</h3><p>C语言中的宏提供了一种文本替换机制，宏又分为带参数的宏和不带参数的宏两种</p>
+<ol>
+<li><p>不带参数的宏<br>例子如下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PI 3.14 </span></span><br><span class="line"><span class="comment">/*标识符和字符序列中间要有空格或tab,一般标识符全为大写字母*/</span></span><br></pre></td></tr></table></figure>
+<p>当源程序中出现这样的宏时会将所有的PI都替换成3.14</p>
+<p>无参宏的好处：</p>
+<ul>
+<li>提高程序可读性</li>
+<li>方便修改数值<br>注意：</li>
+<li>预处理程序会将宏名后的第一个非空白字符到回车符之间的所有字符作为替换文本，所以宏定义必须以回车符结束</li>
+<li>宏定义太长可以用反斜杠“\”来续行</li>
+<li>字符串常量和注释中的宏名不会拓展</li>
+<li>宏可以嵌套使用，因为预处理文件会多次扫描直到没有宏名</li>
+</ul>
+</li>
+<li><p>带参数的宏<br>带参数的宏具有类似函数的功能，又称函数宏，但仅仅只是文本替换与真正的函数还是有区别</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MULT(a,b) a*b</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>,MULT(<span class="number">1</span>+<span class="number">2</span>,<span class="number">3</span>+<span class="number">4</span>))</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>,<span class="number">1</span>+<span class="number">2</span>*<span class="number">3</span>+<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<p>这个带参数的宏的粒子中可以看出宏的执行可分为两步</p>
+<ul>
+<li>进行替换将带参数的宏替换为a*b</li>
+<li>将实参带入a和b </li>
+</ul>
+<p>注意：</p>
+<ul>
+<li>宏与后面的”(“之间不能有空格，否则会将空格后的内容都当做替换文本的一部分</li>
+<li>宏只是做文本替换，如例子中虽然定义了a*b但替换后的计算顺序却与函数定义的方式不同</li>
+</ul>
+</li>
+<li><p>宏的取消<br>宏命令的范围是#define命令到文件结束，但有办法可以提前取消宏定义</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="meta-keyword">undef</span> 宏名</span></span><br></pre></td></tr></table></figure>
+<p>取消后可以重新定义不同的宏名</p>
+</li>
+</ol>
+<h3 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h3><p>文件包含指一个源文件可以将另一个源文件全部包含进来<br>作用：对于多人合作的项目，程序中公共的符号，类型，函数定义可以写在一起方便调用<br>供各个模块用的文件称为“头文件”，拓展名常为 .h 当然也可以是 .c 或 .cpp<br>命令形式：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;文件名&gt; //先找include库，一般用于系统文件stdio.h math.h</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"c:\user\xxx.cpp"</span><span class="comment">//先找当前用户文件夹，一般用于用户自己编写的文件</span></span></span><br></pre></td></tr></table></figure><br>注意：</p>
+<ul>
+<li>可用&lt;&gt;,也可用””</li>
+<li>可直接文件名，也可用文件路径</li>
+<li>C语言提供的头文件在include目录下</li>
+<li>文件包可以嵌套</li>
+</ul>
+<h3 id="条件编译"><a href="#条件编译" class="headerlink" title="条件编译"></a>条件编译</h3><p>作用：</p>
+<ul>
+<li>多个版本时有时希望部分代码仅在一定条件下才编译</li>
+<li>有助于程序调试和测试</li>
+</ul>
+<ol>
+<li><h1 id="if-elif-endif"><a href="#if-elif-endif" class="headerlink" title="if #elif #endif"></a>if #elif #endif</h1><p>作用和C语言中的if /else if/ else相似<br>区别：</p>
+<ul>
+<li>被#if 语句跳过的内容既不执行预处理也不执行编译</li>
+<li>生成程序不被编译，运行时间短<h1 id="if-判断的是常量表达式"><a href="#if-判断的是常量表达式" class="headerlink" title="if 判断的是常量表达式"></a>if 判断的是常量表达式</h1><h1 id="if-可嵌套"><a href="#if-可嵌套" class="headerlink" title="if 可嵌套"></a>if 可嵌套</h1></li>
+</ul>
+</li>
+<li><h1 id="ifdef-ifndef"><a href="#ifdef-ifndef" class="headerlink" title="ifdef #ifndef"></a>ifdef #ifndef</h1><p>作用：检测宏十分被定义而选择是否执行后面内容<br>注意：可配合#else,但不可配合#elif</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">高数</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C语言</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/C语言//" class="article-tag-list-link color4">C语言</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/18/C%E8%AF%AD%E8%A8%80%E9%A2%84%E5%A4%84%E7%90%86%E5%8A%9F%E8%83%BD/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/07/11/KMP%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">KMP模式匹配算法 </div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="C语言预处理功能" data-title="C语言预处理功能" data-url="http://yoursite.com/2020/07/18/C%E8%AF%AD%E8%A8%80%E9%A2%84%E5%A4%84%E7%90%86%E5%8A%9F%E8%83%BD/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -219,9 +404,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
