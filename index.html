@@ -178,6 +178,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
@@ -624,23 +635,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>许多同学在学习高数时不能理解为什么梯度公式所表示的方向是函数变化率最大的方向<br>我在这里写一些我自己的理解，希望对大家有所帮助</p>
-<hr>
-<p>以二元函数为例子</p>
-<p>我们研究的是二元函数上某点的变化率，x，y的变化是一个无穷小量<br>对应f(x,y)的变化也是一个无穷小量，因此(x,y)附近点对应的f(x,y)的值可以等于图中切面上的值</p>
-<p>那么问题转换成了已知三维坐标中平面上一点，要找到变化率最大的方向</p>
-<hr>
-<p>我们以(x,y)为起点，沿每个方向走相同的距离，观察f(x,y)的变化<br>f(x,y)变化最大的方向即为我们要找的梯度的方向</p>
-<p>因为前面已经把f(x,y)简化成了一个平面，所以沿某个方向的运动时f(x,y)的变化就可以转化为沿x方向运动产生的变化和沿y方向运动产生的变化的线性叠加</p>
-<p>沿x方向运动dx导致z=f(x,y)的变化大小为<script type="math/tex">dz=\frac{\partial z}{\partial x}dx</script><br>沿y方向运动dy导致z=f(x,y)的变化大小为<script type="math/tex">dz=\frac{\partial z}{\partial y}dy</script></p>
-<p>因为沿每个方向要走相同的距离因此对dx与dy的要求是<script type="math/tex">(dx)^2 +(dy)^2 = c</script>(c为常数）</p>
-<p>这样求变化率最大的方向的问题就转换成了</p>
-<p><script type="math/tex">dz=\frac{\partial z}{\partial x}dx + \frac{\partial z}{\partial y}dy</script>在约束条件<script type="math/tex">(dx)^2 +(dy)^2 = c</script>下的极值问题</p>
-<hr>
-<p>这个问题可以用拉格朗日乘数法求解，最后得出dx与dy的比值为z对x，y偏导数的比值<br>但这样不够直观体现不出它的几何意义</p>
-<p>这里可以把dz右端的公式看成<script type="math/tex">(\frac{\partial z}{\partial x}, \frac{\partial z}{\partial y})</script>与<script type="math/tex">(dx,dy)</script>两个向量的乘积<br>如果我们令c=1，则问题转化为“单位圆上的哪个向量与成<script type="math/tex">(\frac{\partial z}{\partial x}, \frac{\partial z}{\partial y})</script>的点积最大”</p>
-<p>那么显然当他们方向相同或者说对应坐标成比例时最大</p>
-<p>这样也就可以理解为什么梯度单位向量i，j的系数是z对x和y的偏导数了</p>
-
+        
+          <a class="article-more-a" href="/2020/07/04/%E5%87%A0%E4%BD%95%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3%E4%BA%8C%E5%85%83%E5%87%BD%E6%95%B0%E6%A2%AF%E5%BA%A6/#more">more >></a>
+        
       
 
       
@@ -653,7 +650,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">abc</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">高数</a>
         		</li>
       		
 		</ul>
@@ -803,11 +800,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">abc</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">高数</a>
               </li>
             
             <div class="clearfix"></div>
