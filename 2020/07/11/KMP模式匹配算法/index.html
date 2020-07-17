@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>KMP模式匹配算法  | 叶鸿的hexo博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Abstract:匹配是字符串中的一个重要操作朴素模式的匹配算法效率十分低下，假设主串和匹配串的长度分别为m和n则朴素模式匹配算法的时间复杂度达到$O(m*n)$ 而KMP模式匹配算法时间复杂度可以达到$O(m)$仅仅只需遍历一次主串即可完成匹配 所以让我们来看看KMP模式匹配算法是怎么实现的吧！">
+  <meta name="description" content="简述匹配是字符串中的一个重要操作朴素模式的匹配算法效率十分低下，假设主串和匹配串的长度分别为m和n则朴素模式匹配算法的时间复杂度达到$O(m*n)$ 而KMP模式匹配算法时间复杂度可以达到$O(m)$仅仅只需遍历一次主串即可完成匹配 所以让我们来看看KMP模式匹配算法是怎么实现的吧！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="KMP模式匹配算法 ">
 <meta property="og:url" content="http://yoursite.com/2020/07/11/KMP%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="叶鸿的hexo博客">
-<meta property="og:description" content="Abstract:匹配是字符串中的一个重要操作朴素模式的匹配算法效率十分低下，假设主串和匹配串的长度分别为m和n则朴素模式匹配算法的时间复杂度达到$O(m*n)$ 而KMP模式匹配算法时间复杂度可以达到$O(m)$仅仅只需遍历一次主串即可完成匹配 所以让我们来看看KMP模式匹配算法是怎么实现的吧！">
+<meta property="og:description" content="简述匹配是字符串中的一个重要操作朴素模式的匹配算法效率十分低下，假设主串和匹配串的长度分别为m和n则朴素模式匹配算法的时间复杂度达到$O(m*n)$ 而KMP模式匹配算法时间复杂度可以达到$O(m)$仅仅只需遍历一次主串即可完成匹配 所以让我们来看看KMP模式匹配算法是怎么实现的吧！">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-11T15:48:36.000Z">
-<meta property="article:modified_time" content="2020-07-11T17:43:02.205Z">
+<meta property="article:modified_time" content="2020-07-16T14:04:13.628Z">
 <meta property="article:author" content="曾叶鸿">
 <meta name="twitter:card" content="summary">
   
@@ -81,13 +81,9 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
-				
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
-				
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-				
 					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+				
+					<a class="qq" target="_blank" href="/1059463820" title="qq"><i class="icon-qq"></i></a>
 				
 				
 			</div>
@@ -123,13 +119,9 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
-			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
-			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-			        
 						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+						<a class="qq" target="_blank" href="/1059463820" title="qq"><i class="icon-qq"></i></a>
 			        
 				</div>
 			</nav>
@@ -175,34 +167,45 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Abstract:<br>匹配是字符串中的一个重要操作<br>朴素模式的匹配算法效率十分低下，假设主串和匹配串的长度分别为m和n<br>则朴素模式匹配算法的时间复杂度达到$O(m*n)$</p>
+        <h3 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h3><p>匹配是字符串中的一个重要操作<br>朴素模式的匹配算法效率十分低下，假设主串和匹配串的长度分别为m和n<br>则朴素模式匹配算法的时间复杂度达到$O(m*n)$</p>
 <p>而KMP模式匹配算法时间复杂度可以达到$O(m)$<br>仅仅只需遍历一次主串即可完成匹配</p>
 <p>所以让我们来看看KMP模式匹配算法是怎么实现的吧！</p>
 <a id="more"></a>
-<p>另i为主串上的指针，j为匹配串上的指针<br>在朴素模式匹配算法中，如果已经匹配了多个字符后发现下一个字符不匹配后<br>会进行一个很蠢的操作，就是把i指针回退，其实i指针的回退操作完全是多余的</p>
-<p>我们来看下面这种情况<br>      i<br>a b c d e f g<br>a b c z<br>      j</p>
+<p>令i为主串上的指针，j为匹配串上的指针<br>在朴素模式匹配算法中，如果已经匹配了多个字符后发现下一个字符不匹配后<br>会进行一个很蠢的操作，就是把i指针回退，其实i指针的回退操作完全是多余的</p>
+<p>我们来看下面这种情况<br>| | | |i| | | |<br>|-|-|-|-|-|-|-|<br>|a|b|c|d|e|f|g|<br>|a|b|c|z|<br>| | | |j</p>
 <p>主串”abcdefg” 与 “abcz” 进行匹配出现以上情况(d与z不匹配)<br>这时朴素模式匹配算法会将i指针退回b上<br>但我们分析一下这个过程：<br>此时bc已经与匹配串中的bc匹配过了，而bc又不等于a<br>我们再拿a去与主串中的bc去比较没有任何意义</p>
 <p>这时又会产生一个问题：<br>如果已经成功匹配的字符串中有重复字母怎么办</p>
-<p>比如这种情况<br>        i<br>a b a b a b e<br>a b a b e<br>        j</p>
+<p>比如这种情况<br>| | | | |i| | |<br>|-|-|-|-|-|-|-|<br>|a|b|a|b|a|b|e|<br>|a| b| a|b|e|<br>| | | | |j|</p>
 <p>如果直接把如果直接把j指针移动到第一个a上与主串匹配<br>那显然就把我们所需要的结果给忽略掉了</p>
 <p>但此时我们还是可以不移动i，只要把j的指针移动到第三个a上就能不忽略任何一种情况</p>
 <p>所以只要我们找到了j移动的规律，就可以只遍历一遍主串完成字符串的匹配算法</p>
 <hr>
 <p>我们发现j下一步要移动的位置只与j指针此时的数值有关<br>那么我们可以构造一个函数next(j)来实现这个操作<br>next(j)的功能 ：<br>当要匹配字符串时第j个字符不匹配时，i指针不动，j指针要移动到的下一个坐标<br>可以发现next(j)的数值与已匹配字符串的前缀后缀的“相似度”有关</p>
 <p>有了next(j)我们来梳理一下KMP算法的计算过程<br>当字符匹配或j=0时：<br>i指针和j指针同时+1</p>
-<p>当字符串不匹配时：(此时会调用next(j)函数)<br>    当第1个字符就不匹配：<br>        我们令next(j)=0,这样下次循环可以使i指针+1进行下一轮匹配<br>    非第一个字符匹配时：<br>        调用next(j)函数赋值给j</p>
+<p>当字符串不匹配时：(此时会调用next(j)函数)</p>
+<ul>
+<li>当第1个字符就不匹配：<pre><code>  我们令next(j)=0,这样下次循环可以使i指针+1进行下一轮匹配
+</code></pre></li>
+<li>非第一个字符匹配时：<pre><code>  调用next(j)函数赋值给j
+</code></pre></li>
+</ul>
 <p>这样形成一个循环<br>若跳出循环时达到一定条件我们就可以得到所求下标i的值</p>
 <p>现在只要定义了next()函数，完成我们的算法了<br>前面说过发现next(j)的数值与已匹配字符串的前缀后缀的“相似度”有关<br>我们发现计算某j处对应的next(j)值其实就是前缀与后缀字符串的匹配过程<br>我们需要返回的值就是前缀后缀匹配的长度+1<br>比如”ababe”当abab匹配而e不匹配时，此时前缀ab与后缀ab相同<br>他们的长度为2，则下一次要到的坐标就是2+1=3，也就是第三个字母a处</p>
 <p>那么怎么求前缀后缀的匹配长度呢？<br>定义j处后缀为除了j以为之前的部分字符<br>为了方便理解我们定义前缀的指针为p，后缀指针即为j(p指针指向当子串第j个字符与主串不匹配时，j指针的去向)<br>我们要求的 next(j)函数 就是后缀指针 j 停在每个位置时 p指针的位置<br>此时前缀就成了我们要匹配的子串，整个字符串就成了主串</p>
-<p>对于每个j<br>当后缀与前缀匹配成功或者（p==0）时：<br>    j++(后缀指针向后移动一格：j处的值匹配成功与j处的后缀无关，与j+1处的后缀有关)<br>    p++(p是即将要被赋值的跳回位置,肯定不是跳回有相同字符的地方)<br>    next(j)=p</p>
-<p>当后缀与前缀匹配不成功时：<br>    此时是子串（前缀）与主串匹配失败，我们知道子串的指针需要移动(p指针)<br>    移动到哪里呢？<br>    next(p)    </p>
+<p>对于每个j</p>
+<ul>
+<li><p>当后缀与前缀匹配成功或者（p==0）时：<br>  j++(后缀指针向后移动一格：j处的值匹配成功与j处的后缀无关，与j+1处的后缀有关)<br>  p++(p是即将要被赋值的跳回位置,肯定不是跳回有相同字符的地方)<br>  next(j)=p</p>
+</li>
+<li><p>当后缀与前缀匹配不成功时：<br>  此时是子串（前缀）与主串匹配失败，我们知道子串的指针需要移动(p指针)<br>  移动到哪里呢？<br>  next(p)    </p>
+</li>
+</ul>
 <p>我们知道已经理解了next(1)=0<br>所以上述循环一定能完成<br>就这样我们递归的定义了next(j)<br>也就完成了我们KMP模式匹配算法的介绍</p>
 <hr>
-<p>但是，KMP模式匹配算法其实还能继续改进</p>
-<p>我们观察字符串abababc,并在下面标出了next(j)的值<br>      a b a b a b a<br>  j   1 2 3 4 5 6 7<br>n(j)  0 1 1 2 3 4 5 </p>
-<p>我们如果再j=7时不匹配 也就是i指针对应的字符不等于 a<br>会跳回j=5    继续进行比较 然而j=5对应的字符串也是 a<br>如果多几个在7位置的不匹配字符那每次都要进行从7到5到到3到1的多余计算<br>我们希望这个计算只进行一次</p>
+<h3 id="算法的改进"><a href="#算法的改进" class="headerlink" title="算法的改进"></a>算法的改进</h3><p>但是，KMP模式匹配算法其实还能继续改进</p>
+<p>我们观察字符串abababc,并在下面标出了next(j)的值<br>| |a|b|a|b|a|b|a|<br>|-|-|-|-|-|-|-|-|<br>|j|1|2|3|4|5|6|7|<br>|n(j)|0|1|1|2|3|4|5|</p>
+<p>我们如果再j=7时不匹配 也就是i指针对应的字符不等于 a<br>会跳回j=5继续进行比较 然而j=5对应的字符串也是 a<br>如果多几个在7位置的不匹配字符那每次都要进行从7到5到到3到1的多余计算<br>我们希望这个计算只进行一次</p>
 <p>因此可以把这一步加在next函数中来改进next函数</p>
-<p>在next(j) = p 这一步<br>可以加一步判断，判断下一位字符是否匹配<br>如果匹配 则把 p 对应的next(p)赋值给next(j)<br>因为此时p指针对应的值和j指针对应的值相同，把p指针对应的值赋给j多进行一次比较毫无意义(j指针最后还是要再调用next(j)变为next(p) )，不如直接在next函数中处理了，这样可以有效减少当上面例子的情况出现后next()被调用的次数。</p>
+<p>在next(j) = p 这一步<br>可以加一步判断，判断下一位字符是否匹配<br>如果匹配 则把 p 对应的next(p)赋值给next(j)<br>因为此时p指针对应的值和j指针对应的值相同，把p指针对应的值赋给j多进行一次比较毫无意义(j指针最后还是要再调用next(j)变为next(p))，不如直接在next函数中处理了，这样可以有效减少当上面例子的情况出现后next()被调用的次数。</p>
 
       
 
@@ -312,6 +315,26 @@
 </aside>
 
 
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="KMP模式匹配算法" data-title="KMP模式匹配算法 " data-url="http://yoursite.com/2020/07/11/KMP%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
   
   
@@ -486,7 +509,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">为生存而操劳的普通人</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">厦门大学天文系本科生 目前正在为转换当程序员努力中。。。</div>
   	  	
     	</section>
     
