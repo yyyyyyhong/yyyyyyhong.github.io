@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>java学习笔记2 | 叶鸿的hexo博客</title>
+  <title>C语言中的typedef用法 | 叶鸿的hexo博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="函数定义时用于传参的符号叫形式参数，简称形参，不需要在函数内部传递的参数叫实参 java类支持4中访问区分符 默认（friendly）:    同包可调用，子类不继承public            同包可调用，子类继承private            同包不可调用，子类不继承protect            同包不可调用，子类可继承 创建类需要用到new运算符如 Student zen">
+  <meta name="description" content="介绍C语言中typedef关键字的用法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java学习笔记2">
-<meta property="og:url" content="http://yoursite.com/2020/07/08/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/index.html">
+<meta property="og:title" content="C语言中的typedef用法">
+<meta property="og:url" content="http://yoursite.com/2020/07/19/C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84typedef%E7%94%A8%E6%B3%95/index.html">
 <meta property="og:site_name" content="叶鸿的hexo博客">
-<meta property="og:description" content="函数定义时用于传参的符号叫形式参数，简称形参，不需要在函数内部传递的参数叫实参 java类支持4中访问区分符 默认（friendly）:    同包可调用，子类不继承public            同包可调用，子类继承private            同包不可调用，子类不继承protect            同包不可调用，子类可继承 创建类需要用到new运算符如 Student zen">
+<meta property="og:description" content="介绍C语言中typedef关键字的用法">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-07-07T16:00:40.000Z">
-<meta property="article:modified_time" content="2020-07-19T06:48:06.395Z">
+<meta property="article:published_time" content="2020-07-19T05:59:08.000Z">
+<meta property="article:modified_time" content="2020-07-19T06:47:45.286Z">
 <meta property="article:author" content="曾叶鸿">
+<meta property="article:tag" content="C语言">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="叶鸿的hexo博客" type="application/atom+xml">
@@ -147,35 +148,42 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-java学习笔记2" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-C语言中的typedef用法" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      java学习笔记2
+      C语言中的typedef用法
     </h1>
   
 
         
-        <a href="/2020/07/08/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/" class="archive-article-date">
-  	<time datetime="2020-07-07T16:00:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-08</time>
+        <a href="/2020/07/19/C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84typedef%E7%94%A8%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2020-07-19T05:59:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>函数定义时用于传参的符号叫形式参数，简称形参，不需要在函数内部传递的参数叫实参</p>
-<p>java类支持4中访问区分符</p>
-<p>默认（friendly）:    同包可调用，子类不继承<br>public            同包可调用，子类继承<br>private            同包不可调用，子类不继承<br>protect            同包不可调用，子类可继承</p>
-<p>创建类需要用到new运算符<br>如 Student zeng = new Student()<br>左边是声明一个类<br>右边用new运算符创建一个类<br>Student()是与类同名的成员函数（构造符函数）（可在类中自定义，也可以不定义使用系统的默认）</p>
-<p>静态变量在类的对象创建前就可以通过类名进行访问</p>
-<p>这里不小心用ctrl+Z退出了vi编辑器 查找后发现fg加数字可以恢复</p>
-<p>静态函数只能访问静态变量和自身定义的变量</p>
-<p>使用逻辑表达式时注意最好不要在逻辑表达式中进行数值计算过程<br>因为：有时逻辑表达式进行完左边的运算后就返回值了不再进行右边的运算，若在右边有运算则会被直接跳过出现短路的问题</p>
-<p>java定义的常量会被java虚拟机优化<br>相同的常量会指向相同的内存<br>因此虽然常量间的  ==  运算是指内存是否相等，<br>但是相同的常量经过  ==  运算还是会返回True</p>
+        <p>介绍C语言中typedef关键字的用法<br><a id="more"></a></p>
+<ul>
+<li>type define 的缩写即为typedef。</li>
+<li>和字面意思不同typedef并没有定义新的数据类型，只是为原有的数据类型取了个别名</li>
+</ul>
+<p><strong>语法：</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> 现有类型名 新的类型名;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> INTEGER;</span><br></pre></td></tr></table></figure><br>这个语句为基本数据类型int取了个别名INTEGER，后面的代码就可以用<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INTEGER a, b;</span><br></pre></td></tr></table></figure><br>这样的语句来定义整型了，相当于<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a, b;</span><br></pre></td></tr></table></figure><br><strong>注意：</strong></p>
+<ul>
+<li>typedef语句与#define有些类似，但前者是编译时处理，后者是编译前的预处理时处理</li>
+<li>typedef定义的是类型名而不是变量名</li>
+</ul>
+<p><strong>用法：</strong></p>
+<ul>
+<li>比如有很多地方用到同一个数据类型，但可能需要同时修改，那么利用typedef语句就可以，只修改typedef处现有类型名处的数据类型就可以做到全部修改</li>
+<li>定义结构体变量时<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">List</span>&#123;</span></span><br><span class="line">    数据;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">List</span> <span class="title">a</span>, <span class="title">b</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    数据;</span><br><span class="line">&#125;LIST;</span><br><span class="line">LIST a, b;</span><br></pre></td></tr></table></figure>
+下面部分的代码用typedef来给结构体类型取别名，那么在之后定义结构体时就可以不用再写struct了</li>
+</ul>
 
       
 
@@ -184,13 +192,24 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C语言</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        			<a href="/categories/C语言//" class="article-tag-list-link color4">C语言</a>
         		</li>
       		
 		</ul>
@@ -245,7 +264,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/08/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/19/C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84typedef%E7%94%A8%E6%B3%95/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -259,18 +278,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/07/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B01/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/07/19/C%E8%AF%AD%E8%A8%80%E7%9A%84%E6%8C%87%E9%92%88/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          数据结构笔记1
+          C语言的指针
         
       </div>
     </a>
   
   
-    <a href="/2020/07/07/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">java学习笔记1</div>
+    <a href="/2020/07/19/C%E8%AF%AD%E8%A8%80%E7%BB%93%E6%9E%84%E4%BD%93%EF%BC%8C%E5%85%B1%E7%94%A8%E4%BD%93%EF%BC%8C%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C语言结构体，共用体，枚举类型</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -298,7 +317,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="java学习笔记2" data-title="java学习笔记2" data-url="http://yoursite.com/2020/07/08/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/"></div>
+	<div class="ds-thread" data-thread-key="C语言中的typedef用法" data-title="C语言中的typedef用法" data-url="http://yoursite.com/2020/07/19/C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84typedef%E7%94%A8%E6%B3%95/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
