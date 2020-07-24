@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>C语言结构体，共用体，枚举类型 | 叶鸿的hexo博客</title>
+  <title>线性表的链式存储实现 | 叶鸿的hexo博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="结构体，共用体和枚举类型是C语言中的自定义变量介绍结构体，共用体用法枚举类型的定义和用法">
+  <meta name="description" content="C语言的代码来实现线性表链式存储">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C语言结构体，共用体，枚举类型">
-<meta property="og:url" content="http://yoursite.com/2020/07/19/C%E8%AF%AD%E8%A8%80%E7%BB%93%E6%9E%84%E4%BD%93%EF%BC%8C%E5%85%B1%E7%94%A8%E4%BD%93%EF%BC%8C%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/index.html">
+<meta property="og:title" content="线性表的链式存储实现">
+<meta property="og:url" content="http://yoursite.com/2020/07/24/%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="叶鸿的hexo博客">
-<meta property="og:description" content="结构体，共用体和枚举类型是C语言中的自定义变量介绍结构体，共用体用法枚举类型的定义和用法">
+<meta property="og:description" content="C语言的代码来实现线性表链式存储">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-07-19T04:36:34.000Z">
-<meta property="article:modified_time" content="2020-07-19T12:59:46.689Z">
+<meta property="article:published_time" content="2020-07-24T08:14:18.000Z">
+<meta property="article:modified_time" content="2020-07-24T12:56:51.139Z">
 <meta property="article:author" content="曾叶鸿">
-<meta property="article:tag" content="C语言">
+<meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="叶鸿的hexo博客" type="application/atom+xml">
@@ -147,71 +147,53 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-C语言结构体，共用体，枚举类型" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-线性表的链式存储实现" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      C语言结构体，共用体，枚举类型
+      线性表的链式存储实现
     </h1>
   
 
         
-        <a href="/2020/07/19/C%E8%AF%AD%E8%A8%80%E7%BB%93%E6%9E%84%E4%BD%93%EF%BC%8C%E5%85%B1%E7%94%A8%E4%BD%93%EF%BC%8C%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2020-07-19T04:36:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-19</time>
+        <a href="/2020/07/24/%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
+  	<time datetime="2020-07-24T08:14:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>结构体，共用体和枚举类型是C语言中的自定义变量<br>介绍结构体，共用体用法枚举类型的定义和用法<br><a id="more"></a></p>
-<hr>
-<h3 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h3><p>数组存储同一类型的线性数据，而结构体可以将不同类型的数据当做一个整体来处理</p>
-<h5 id="结构体类型的定义方法"><a href="#结构体类型的定义方法" class="headerlink" title="结构体类型的定义方法"></a>结构体类型的定义方法</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> 结构体类型名&#123;</span></span><br><span class="line">    数据类型 成员项；</span><br><span class="line">    数据类型 成员项；</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>结构体是一种数据类型,与int等数据类型是同一层次<br><strong>注意：</strong></p>
-<ul>
-<li>定义结构体是语句，语句后要加分号</li>
-<li>结构体类型名可省略直接定义结构体变量，但struct关键字不能省略</li>
+        <p>C语言的代码来实现线性表链式存储<br><a id="more"></a></p>
+<h4 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h4><p>用于定义宏，增加代码可读性，方便修改数据类型<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> OK 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ERROR 0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TRUE 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FALSE 0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXSIZE 20</span></span><br><span class="line"><span class="comment">//设定数组（线性表存储空间）的长度</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> Status; <span class="comment">//设定函数状态的类型，方便阅读用</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> ElemType;  <span class="comment">//是线性表存储的数据类型，方便修改和阅读</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    ElemType data；</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> * <span class="title">next</span>;</span><span class="comment">/*和LinkList一样都是指针类型*/</span></span><br><span class="line">&#125;Node, * LinkList;</span><br><span class="line"><span class="comment">/*&#125;后面第一个Node的作用是让struct Node只用Node表示</span></span><br><span class="line"><span class="comment">* LinkList的作用是令结构体指针变量可以直接用LinkList定义*/</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="链表初始化"><a href="#链表初始化" class="headerlink" title="链表初始化"></a>链表初始化</h4><ul>
+<li>malloc是动态分配存储空间的命令，参数是单位空间的字节数，可用sizeof函数计算</li>
+<li>malloc返回一个无类型指针，需要进行强制转换，这里转换为结构体指针类型</li>
+<li>初始化就是为头结点分配空间并且令结构体内的指针指向空<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Status <span class="title">InitList</span><span class="params">(LinkList * L)</span></span>&#123;</span><br><span class="line">    * L = (LinkList)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));</span><br><span class="line">    <span class="comment">/*改变结构体指针所指的存储空间*L是结构体指针，L是结构体指针的指针*/</span></span><br><span class="line">    <span class="keyword">if</span>(!(* L))</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    (* L)-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="comment">/*改变结构体指针所指的结构体的结构体成员next的值*/</span></span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h5 id="定义结构体变量的方法"><a href="#定义结构体变量的方法" class="headerlink" title="定义结构体变量的方法"></a>定义结构体变量的方法</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> 结构体类型名 结构体变量名；</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>结构体同其他类型一样可以同时定义几个相同类型的变量，用逗号分隔</li>
-<li>结构体变量可以同结构体类型一起定义（写在｝后，；前）</li>
+<h4 id="判断链表是否为空"><a href="#判断链表是否为空" class="headerlink" title="判断链表是否为空"></a>判断链表是否为空</h4><ul>
+<li>就是判断头结点成员next是否指向NULL</li>
+<li>无需改变结构体指针L的值因此可以不用*L<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Status <span class="title">ListEmpty</span><span class="params">(LinkList L)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(L-&gt;next)</span><br><span class="line">        <span class="keyword">return</span> FALSE;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h5 id="结构体初始化"><a href="#结构体初始化" class="headerlink" title="结构体初始化"></a>结构体初始化</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> 结构体类型 结构体变量=&#123;</span></span><br><span class="line">    初始化数据表</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>结构体的初始化不同于其他，必须与成员项个数相同，并且数据类型应该正确</li>
-<li>结构体的类型定义，变量定义和初始化可以同时进行</li>
+<h4 id="清空链表"><a href="#清空链表" class="headerlink" title="清空链表"></a>清空链表</h4><ul>
+<li>free(指针)释放指针所指区域的内存</li>
+<li>清空链表需要释放头结点后所有结点的内存<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Status <span class="title">ClearList</span><span class="params">(LinkList L)</span></span>&#123;</span><br><span class="line">    LinkList p,q;</span><br><span class="line">    p = L-&gt;next;</span><br><span class="line">    <span class="keyword">while</span>(p)&#123;</span><br><span class="line">        q = p-&gt;next;</span><br><span class="line">        <span class="built_in">free</span>(p);</span><br><span class="line">        p = q;</span><br><span class="line">    &#125;</span><br><span class="line">    L-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h5 id="结构体的引用"><a href="#结构体的引用" class="headerlink" title="结构体的引用"></a>结构体的引用</h5><ol>
-<li>对结构体变量成员的引用<br>同python中对对象属性的引用，对结构体成员的引用用”.”<br>“.”为分量运算符，优先级最高，因此用”.”连接的变量可以看成一个整体</li>
-<li>对结构体变量整体的引用<br>同类型的结构体变量可以相互赋值（作为参数传递）<br><strong>注意</strong></li>
-</ol>
-<ul>
-<li>同类型指同一语句中定义的结构体变量或同一结构体类型名定义的变量</li>
+<h4 id="求链表长度"><a href="#求链表长度" class="headerlink" title="求链表长度"></a>求链表长度</h4><ul>
+<li>如果头结点没有保存链表长度的值，那么求链表长度需要遍历整个链表<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ListLength</span><span class="params">(LinkList L)</span></span>&#123;</span><br><span class="line">    LinkList p = L;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; p-&gt;next; i++)&#123;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h5 id="结构体数组"><a href="#结构体数组" class="headerlink" title="结构体数组"></a>结构体数组</h5><p>结构体数组的定义初始化和数组类似，不同的是初始化时初始化的数据长度必须和定义时的相同，不能缺省，相对的[ ]中数组的长度也可以省略</p>
-<hr>
-<h3 id="共用体"><a href="#共用体" class="headerlink" title="共用体"></a>共用体</h3><p>共用体的用法基本和结构体一样</p>
-<h5 id="共用体与结构体的不同"><a href="#共用体与结构体的不同" class="headerlink" title="共用体与结构体的不同"></a>共用体与结构体的不同</h5><ul>
-<li>结构体用struct关键字 共用体用union关键字</li>
-<li>共用体中的不同类型的变量存储在同一块内存空间中</li>
-<li>共用体一次只能有1个数据元素有值</li>
-</ul>
-<p>内存充足的情况下共用体的功能可以完全被结构体取代<br>在计算机成本不断降低的今天共用体基本不使用</p>
-<hr>
-<h3 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h3><p>为什么需要枚举类型：</p>
-<ul>
-<li>现实中有些数据常常只去有限的值如星期，颜色等等，定义枚举类型可以使得这种类型只取给定的值，提供很大的方便</li>
-</ul>
-<h5 id="枚举类型的定义"><a href="#枚举类型的定义" class="headerlink" title="枚举类型的定义"></a>枚举类型的定义</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> 枚举类型名&#123;枚举元素表&#125;;</span><br></pre></td></tr></table></figure>
-<p>枚举元素和整数对应，默认情况下从0开始，但也可以在定义时指定序号</p>
-<h5 id="枚举变量的定义"><a href="#枚举变量的定义" class="headerlink" title="枚举变量的定义"></a>枚举变量的定义</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> 枚举类型名 枚举变量列表;</span><br></pre></td></tr></table></figure>
-<p>枚举变量的定义可以同枚举类型的定义同时进行，同时定义时可省略枚举类型名</p>
-<h5 id="枚举变量的初始化"><a href="#枚举变量的初始化" class="headerlink" title="枚举变量的初始化"></a>枚举变量的初始化</h5><p>可用枚举元素或者整数进行枚举变量的初始化，用整数时要进行类型转换，例如<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> Day = &#123;Mon, Sun&#125;;</span><br><span class="line">Day enDay = Sun;</span><br><span class="line">Day enDay = (Day)<span class="number">0</span>;</span><br></pre></td></tr></table></figure></p>
+<h4 id="返回第i个元素并赋值给e"><a href="#返回第i个元素并赋值给e" class="headerlink" title="返回第i个元素并赋值给e"></a>返回第i个元素并赋值给e</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Status <span class="title">GetElem</span><span class="params">(LinkList L, <span class="keyword">int</span> i, ElemType *e)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">1</span>;<span class="comment">/*计数器，求下标值*/</span></span><br><span class="line">    LinkList p = L-&gt;next;</span><br><span class="line">    <span class="keyword">while</span>(p &amp;&amp; j &lt; i)&#123;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">        j++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!p || j&gt;i)</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    *e = p-&gt;data;</span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="返回第一个与e相同的元素下标"><a href="#返回第一个与e相同的元素下标" class="headerlink" title="返回第一个与e相同的元素下标"></a>返回第一个与e相同的元素下标</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">LocatElem</span><span class="params">(LinkList L, ElemType e)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">1</span>;</span><br><span class="line">    LinkList p = L-&gt;next;</span><br><span class="line">    <span class="keyword">while</span>(p)&#123;</span><br><span class="line">        <span class="keyword">if</span>(p-&gt;data == e)&#123;</span><br><span class="line">            <span class="keyword">return</span> j;</span><br><span class="line">        &#125;</span><br><span class="line">        j++;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!p) </span><br><span class="line">        <span class="keyword">return</span> FALSE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="在线性表第i个位置插入元素e"><a href="#在线性表第i个位置插入元素e" class="headerlink" title="在线性表第i个位置插入元素e"></a>在线性表第i个位置插入元素e</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Status <span class="title">ListInsert</span><span class="params">(LinkList L, <span class="keyword">int</span> i, ElemType e)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">1</span>;</span><br><span class="line">    LinkList p = L;</span><br><span class="line">    <span class="keyword">while</span>(p &amp;&amp; j &lt; i)&#123;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">        j++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*j = i时 p停留在第i-1个结点*/</span></span><br><span class="line">    <span class="keyword">if</span>((!p) || j &gt; i)&#123;</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    LinkList s = (LinkList)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));</span><br><span class="line">    <span class="comment">/*创建新结点（结构体指针），申请内存空间*/</span></span><br><span class="line">    s-&gt;data = e;</span><br><span class="line">    s-&gt;next = p-&gt;next;</span><br><span class="line">    p-&gt;next = LinkList;</span><br><span class="line">    <span class="comment">/*顺序别搞错*/</span></span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="删除第i个元素"><a href="#删除第i个元素" class="headerlink" title="删除第i个元素"></a>删除第i个元素</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Status <span class="title">ListDelete</span><span class="params">(LinkList L, <span class="keyword">int</span> i, ElemType * e)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">1</span>;</span><br><span class="line">    LinkList p = L;</span><br><span class="line">    <span class="keyword">while</span>(p &amp;&amp; j &lt; i)&#123;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">        j++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>((!p) || j &gt; i)&#123;</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    q = p-&gt;next;</span><br><span class="line">    p-&gt;next = q-&gt;next;</span><br><span class="line">    * e = q-&gt;data;</span><br><span class="line">    <span class="built_in">free</span>(q);</span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="链表的遍历"><a href="#链表的遍历" class="headerlink" title="链表的遍历"></a>链表的遍历</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Status <span class="title">ListTracerse</span><span class="params">(LinkList L)</span></span>&#123;</span><br><span class="line">    LinkList p = L-&gt;next;</span><br><span class="line">    <span class="keyword">while</span>(p)&#123;</span><br><span class="line">        visit(p-&gt;data);</span><br><span class="line">        p = p-next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Status <span class="title">visit</span><span class="params">(ElemType e)</span></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d "</span>, e);</span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -225,7 +207,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C语言</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
         		</li>
       		
 		</ul>
@@ -237,7 +219,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/C语言//" class="article-tag-list-link color4">C语言</a>
+        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
         		</li>
       		
 		</ul>
@@ -292,7 +274,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/19/C%E8%AF%AD%E8%A8%80%E7%BB%93%E6%9E%84%E4%BD%93%EF%BC%8C%E5%85%B1%E7%94%A8%E4%BD%93%EF%BC%8C%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/24/%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8%E5%AE%9E%E7%8E%B0/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -306,18 +288,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/07/19/C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84typedef%E7%94%A8%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          C语言中的typedef用法
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/07/19/C%E8%AF%AD%E8%A8%80%E6%95%B0%E7%BB%84/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">C语言数组</div>
+    <a href="/2020/07/20/%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8%E5%AE%9E%E7%8E%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">线性表的顺序存储实现</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -345,7 +318,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="C语言结构体，共用体，枚举类型" data-title="C语言结构体，共用体，枚举类型" data-url="http://yoursite.com/2020/07/19/C%E8%AF%AD%E8%A8%80%E7%BB%93%E6%9E%84%E4%BD%93%EF%BC%8C%E5%85%B1%E7%94%A8%E4%BD%93%EF%BC%8C%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/"></div>
+	<div class="ds-thread" data-thread-key="线性表的链式存储实现" data-title="线性表的链式存储实现" data-url="http://yoursite.com/2020/07/24/%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8%E5%AE%9E%E7%8E%B0/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
