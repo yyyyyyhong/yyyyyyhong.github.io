@@ -144,6 +144,262 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-KMP模式匹配算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/11/KMP%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/">KMP模式匹配算法 </a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/11/KMP%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2020-07-11T15:48:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h3><p>匹配是字符串中的一个重要操作<br>朴素模式的匹配算法效率十分低下，假设主串和匹配串的长度分别为m和n<br>则朴素模式匹配算法的时间复杂度达到$O(m*n)$</p>
+<p>而KMP模式匹配算法时间复杂度可以达到$O(m)$<br>仅仅只需遍历一次主串即可完成匹配</p>
+<p>所以让我们来看看KMP模式匹配算法是怎么实现的吧！</p>
+        
+          <a class="article-more-a" href="/2020/07/11/KMP%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/11/KMP%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-java的指针" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/10/java%E7%9A%84%E6%8C%87%E9%92%88/">java的指针</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/10/java%E7%9A%84%E6%8C%87%E9%92%88/" class="archive-article-date">
+  	<time datetime="2020-07-10T12:42:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>java中的赋值语句传递的不都是形参</p>
+<p>只有8中基本类型传递的参数使形参<br>其余的类通过赋值语句传递的都是地址都是实参</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Node tmp = head;</span><br><span class="line">        <span class="keyword">while</span> (tmp.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            tmp = tmp.next;</span><br><span class="line">        &#125;</span><br><span class="line">        tmp.next = newNode;</span><br></pre></td></tr></table></figure>
+<p>这里head 将自己的地址传递给tmp<br>后面tmp的next属性被修改的同时，head也被修改</p>
+<p>相当于c中的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Node * tmp = &amp;head</span><br></pre></td></tr></table></figure>
+<p>当*tmp被修改相当于修改head</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/10/java%E7%9A%84%E6%8C%87%E9%92%88/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2020-7-10学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/10/2020-7-10%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"> 2020.7.10学习笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/10/2020-7-10%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2020-07-09T18:10:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>StringBuffer 类是线程安全的，多线程的时候用<br>StringBuilder线程不安全，但执行效率搞，单线程的时候用</p>
+<p>字符串操作会开辟大量内存，在循环中应避免字符串操作</p>
+<p>println的操作对象不是字符串时会默认调用object的toString方法<br>可在类中重写toString方法进行覆盖进而控制pringln的输出</p>
+<p>无特殊情况下，类属性建议设为私有，定义set，get方法作为接口进行修改</p>
+<p>构造函数一般设为public方便调用</p>
+<p>类是对概念的抽象，接口是对功能的归纳</p>
+<p>子类重写父类方法时不要缩小访问权限（失传问题）</p>
+<p>final关键字修饰的方法不能被继承</p>
+<p>一般不重写finalize方法</p>
+<p>多态定义：同方法对于不同输入有不同的输出<br>重载：多次定义方法，每次定义的参数不同（数量，类型）<br>覆盖：子类定义相同返回值，相同参数的方法 实现多态</p>
+<p>构造函数能重载不能覆盖<br>this（）指本类（构造函数中可用来调用其他构造函数）<br>super（）指父类（此处不带参数，子类构造函数无内容自动调用）</p>
+<p>多态好处是可以隔离修改，影响范围小，容易添加删除修改</p>
+<p>随机存取就是直接存取，即可以通过下标直接访问。</p>
+<p>循环链表使用尾指针，可以方便查找头和尾。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/10/2020-7-10%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-数据结构笔记1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -627,6 +883,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">C语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
             
             <div class="clearfix"></div>
