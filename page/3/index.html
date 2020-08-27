@@ -144,6 +144,289 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-java/2020-7-10学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/10/java/2020-7-10%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"> 2020.7.10学习笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/10/java/2020-7-10%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2020-07-09T18:10:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>StringBuffer 类是线程安全的，多线程的时候用<br>StringBuilder线程不安全，但执行效率搞，单线程的时候用</p>
+<p>字符串操作会开辟大量内存，在循环中应避免字符串操作</p>
+<p>println的操作对象不是字符串时会默认调用object的toString方法<br>可在类中重写toString方法进行覆盖进而控制pringln的输出</p>
+<p>无特殊情况下，类属性建议设为私有，定义set，get方法作为接口进行修改</p>
+<p>构造函数一般设为public方便调用</p>
+<p>类是对概念的抽象，接口是对功能的归纳</p>
+<p>子类重写父类方法时不要缩小访问权限（失传问题）</p>
+<p>final关键字修饰的方法不能被继承</p>
+<p>一般不重写finalize方法</p>
+<p>多态定义：同方法对于不同输入有不同的输出<br>重载：多次定义方法，每次定义的参数不同（数量，类型）<br>覆盖：子类定义相同返回值，相同参数的方法 实现多态</p>
+<p>构造函数能重载不能覆盖<br>this（）指本类（构造函数中可用来调用其他构造函数）<br>super（）指父类（此处不带参数，子类构造函数无内容自动调用）</p>
+<p>多态好处是可以隔离修改，影响范围小，容易添加删除修改</p>
+<p>随机存取就是直接存取，即可以通过下标直接访问。</p>
+<p>循环链表使用尾指针，可以方便查找头和尾。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/10/java/2020-7-10%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-数据结构与算法/数据结构笔记1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B01/">数据结构笔记1</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B01/" class="archive-article-date">
+  	<time datetime="2020-07-08T16:59:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>数据结构分为</p>
+<ol>
+<li>逻辑结构<ul>
+<li>集合</li>
+<li>线性</li>
+<li>树形</li>
+<li>图形</li>
+</ul>
+</li>
+<li>物理结构（储存结构）<ul>
+<li>顺序</li>
+<li>链式</li>
+</ul>
+</li>
+</ol>
+<p>算法的时间复杂度是基本操作数关于输入规模的函数，一般用大O记法，以最坏情况为标准<br>大O记法：只看n趋于无穷时最高阶的项（忽略常数）</p>
+<p>线性表</p>
+<p>线性表的长度&lt;数组的长度=线性表储存空间的长度<br>数组长度一般不可变</p>
+<p>线性表的基本操作有</p>
+<ol>
+<li>初始化</li>
+<li>判断是否为空</li>
+<li>清空表</li>
+<li>返回下标i对应的值</li>
+<li>查找元素十分存在，返回下标</li>
+<li>i处插入元素</li>
+<li>i处删除元素</li>
+<li>返回线性表的长度</li>
+</ol>
+<p>复杂的操作都可以由基本操作组合而成</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B01/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-java/零散笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/08/java/%E9%9B%B6%E6%95%A3%E7%AC%94%E8%AE%B0/">java学习笔记2</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/08/java/%E9%9B%B6%E6%95%A3%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2020-07-07T16:00:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>函数定义时用于传参的符号叫形式参数，简称形参，不需要在函数内部传递的参数叫实参</p>
+<p>java类支持4中访问区分符</p>
+<p>默认（friendly）:    同包可调用，子类不继承<br>public            同包可调用，子类继承<br>private            同包不可调用，子类不继承<br>protect            同包不可调用，子类可继承</p>
+<p>创建类需要用到new运算符<br>如 Student zeng = new Student()<br>左边是声明一个类<br>右边用new运算符创建一个类<br>Student()是与类同名的成员函数（构造符函数）（可在类中自定义，也可以不定义使用系统的默认）</p>
+<p>静态变量在类的对象创建前就可以通过类名进行访问</p>
+<p>这里不小心用ctrl+Z退出了vi编辑器 查找后发现fg加数字可以恢复</p>
+<p>静态函数只能访问静态变量和自身定义的变量</p>
+<p>使用逻辑表达式时注意最好不要在逻辑表达式中进行数值计算过程<br>因为：有时逻辑表达式进行完左边的运算后就返回值了不再进行右边的运算，若在右边有运算则会被直接跳过出现短路的问题</p>
+<p>java定义的常量会被java虚拟机优化<br>相同的常量会指向相同的内存<br>因此虽然常量间的  ==  运算是指内存是否相等，<br>但是相同的常量经过  ==  运算还是会返回True</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/08/java/%E9%9B%B6%E6%95%A3%E7%AC%94%E8%AE%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-数学/几何直观理解二元函数梯度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -164,7 +447,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>许多同学在学习高数时不能理解一个问题<script type="math/tex">\triangledown u=\frac{\partial u}{\partial x}\vec{i}+\frac{\partial u}{\partial y}\vec{j}+\frac{\partial u}{\partial z}\vec{k}</script>为什么梯度公式所表示的方向是函数变化率最大的方向？</p>
+        <p>许多同学在学习高数时不能理解一个问题：</p>
+<script type="math/tex; mode=display">\triangledown u=\frac{\partial u}{\partial x}\vec{i}+\frac{\partial u}{\partial y}\vec{j}+\frac{\partial u}{\partial z}\vec{k}</script><p>为什么梯度公式所表示的方向是函数变化率最大的方向？</p>
         
           <a class="article-more-a" href="/2020/07/04/%E6%95%B0%E5%AD%A6/%E5%87%A0%E4%BD%95%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3%E4%BA%8C%E5%85%83%E5%87%BD%E6%95%B0%E6%A2%AF%E5%BA%A6/#more">more >></a>
         
@@ -361,10 +645,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Lingo 数学建模</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Latex</a>
               </li>
              
@@ -374,6 +654,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
               </li>
             
             <div class="clearfix"></div>

@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>java学习笔记2 | 叶鸿的hexo博客</title>
+  <title>堆排序Java实现 | 叶鸿的hexo博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="函数定义时用于传参的符号叫形式参数，简称形参，不需要在函数内部传递的参数叫实参 java类支持4中访问区分符 默认（friendly）:    同包可调用，子类不继承public            同包可调用，子类继承private            同包不可调用，子类不继承protect            同包不可调用，子类可继承 创建类需要用到new运算符如 Student zen">
+  <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182import java.util.ArrayList;import java.util.A">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java学习笔记2">
-<meta property="og:url" content="http://yoursite.com/2020/07/08/java/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/index.html">
+<meta property="og:title" content="堆排序Java实现">
+<meta property="og:url" content="http://yoursite.com/2020/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%A0%86%E6%8E%92%E5%BA%8FJava%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="叶鸿的hexo博客">
-<meta property="og:description" content="函数定义时用于传参的符号叫形式参数，简称形参，不需要在函数内部传递的参数叫实参 java类支持4中访问区分符 默认（friendly）:    同包可调用，子类不继承public            同包可调用，子类继承private            同包不可调用，子类不继承protect            同包不可调用，子类可继承 创建类需要用到new运算符如 Student zen">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182import java.util.ArrayList;import java.util.A">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-07-07T16:00:40.000Z">
-<meta property="article:modified_time" content="2020-08-14T11:20:30.392Z">
+<meta property="article:published_time" content="2020-08-26T11:46:08.000Z">
+<meta property="article:modified_time" content="2020-08-26T11:47:19.466Z">
 <meta property="article:author" content="曾叶鸿">
+<meta property="article:tag" content="排序算法">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="叶鸿的hexo博客" type="application/atom+xml">
@@ -146,36 +147,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-java/java学习笔记2" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-数据结构与算法/堆排序Java实现" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      java学习笔记2
+      堆排序Java实现
     </h1>
   
 
         
-        <a href="/2020/07/08/java/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/" class="archive-article-date">
-  	<time datetime="2020-07-07T16:00:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-08</time>
+        <a href="/2020/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%A0%86%E6%8E%92%E5%BA%8FJava%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
+  	<time datetime="2020-08-26T11:46:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>函数定义时用于传参的符号叫形式参数，简称形参，不需要在函数内部传递的参数叫实参</p>
-<p>java类支持4中访问区分符</p>
-<p>默认（friendly）:    同包可调用，子类不继承<br>public            同包可调用，子类继承<br>private            同包不可调用，子类不继承<br>protect            同包不可调用，子类可继承</p>
-<p>创建类需要用到new运算符<br>如 Student zeng = new Student()<br>左边是声明一个类<br>右边用new运算符创建一个类<br>Student()是与类同名的成员函数（构造符函数）（可在类中自定义，也可以不定义使用系统的默认）</p>
-<p>静态变量在类的对象创建前就可以通过类名进行访问</p>
-<p>这里不小心用ctrl+Z退出了vi编辑器 查找后发现fg加数字可以恢复</p>
-<p>静态函数只能访问静态变量和自身定义的变量</p>
-<p>使用逻辑表达式时注意最好不要在逻辑表达式中进行数值计算过程<br>因为：有时逻辑表达式进行完左边的运算后就返回值了不再进行右边的运算，若在右边有运算则会被直接跳过出现短路的问题</p>
-<p>java定义的常量会被java虚拟机优化<br>相同的常量会指向相同的内存<br>因此虽然常量间的  ==  运算是指内存是否相等，<br>但是相同的常量经过  ==  运算还是会返回True</p>
-
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HeapSort</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> input_1 = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        String inputLine = input_1.nextLine();</span><br><span class="line">        <span class="keyword">var</span> input_2 = <span class="keyword">new</span> Scanner(inputLine);</span><br><span class="line">        <span class="keyword">var</span> inputArray = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">        <span class="keyword">while</span>(input_2.hasNext())</span><br><span class="line">        &#123;</span><br><span class="line">            inputArray.add(input_2.nextInt());</span><br><span class="line">        &#125;    </span><br><span class="line">        input_1.close();</span><br><span class="line">        input_2.close();</span><br><span class="line">        <span class="keyword">var</span> input = <span class="keyword">new</span> Integer[inputArray.size()];</span><br><span class="line">        inputArray.toArray(input);</span><br><span class="line">        <span class="comment">//Arrays.sort(input);</span></span><br><span class="line">        HeapSorts(input);</span><br><span class="line">        <span class="comment">//BulidMaxHeap(input);</span></span><br><span class="line">        System.out.println(Arrays.toString(input));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">HeapSorts</span><span class="params">(Integer[] A)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        BulidMaxHeap(A);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = A.length-<span class="number">1</span>; i &gt; <span class="number">0</span>; i--)</span><br><span class="line">        &#123;</span><br><span class="line">            swap(A, i, <span class="number">0</span>);</span><br><span class="line">            MaxHeapify(A, <span class="number">0</span>, i-<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*define the left and rigth children's label*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">LEFT</span><span class="params">(<span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>*i + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">RIGTH</span><span class="params">(<span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>*i +<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* If the ith s children are max-heap, use this function to adjust the top elem from top to bottom*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">MaxHeapify</span><span class="params">(Integer[] A, <span class="keyword">int</span> i, <span class="keyword">int</span> heapSize)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> l = LEFT(i);</span><br><span class="line">        <span class="keyword">int</span> r = RIGTH(i);</span><br><span class="line">        <span class="keyword">int</span> largest;</span><br><span class="line">        <span class="keyword">if</span>(l &lt;= heapSize &amp;&amp; A[l] &gt; A[i])</span><br><span class="line">            largest = l;</span><br><span class="line">        <span class="keyword">else</span> largest = i;</span><br><span class="line">        <span class="keyword">if</span>(r &lt;= heapSize &amp;&amp; A[r] &gt; A[largest])</span><br><span class="line">            largest = r;</span><br><span class="line">        <span class="keyword">if</span>(i != largest)</span><br><span class="line">        &#123;</span><br><span class="line">            swap(A, i, largest);</span><br><span class="line">            MaxHeapify(A, largest, heapSize);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**swap two Integer elem in the arrays</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> A the array</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> a first elem</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> b second elem</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(Integer[] A, <span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Integer temp = A[a];</span><br><span class="line">        A[a] = A[b];</span><br><span class="line">        A[b] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">BulidMaxHeap</span><span class="params">(Integer[] A)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = A.length-<span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">        &#123;</span><br><span class="line">            MaxHeapify(A, i, A.length-<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -183,13 +175,24 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">排序算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        			<a href="/categories/排序算法//" class="article-tag-list-link color5">排序算法</a>
         		</li>
       		
 		</ul>
@@ -244,7 +247,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/08/java/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%A0%86%E6%8E%92%E5%BA%8FJava%E5%AE%9E%E7%8E%B0/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -258,18 +261,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/07/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B01/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8FJava%E5%AE%9E%E7%8E%B0/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          数据结构笔记1
+          快速排序Java实现
         
       </div>
     </a>
   
   
-    <a href="/2020/07/07/java/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">java学习笔记1</div>
+    <a href="/2020/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F%EF%BC%8C%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8FJava%E5%AE%9E%E7%8E%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">插入排序，归并排序Java实现</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -297,7 +300,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="java/java学习笔记2" data-title="java学习笔记2" data-url="http://yoursite.com/2020/07/08/java/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/"></div>
+	<div class="ds-thread" data-thread-key="数据结构与算法/堆排序Java实现" data-title="堆排序Java实现" data-url="http://yoursite.com/2020/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%A0%86%E6%8E%92%E5%BA%8FJava%E5%AE%9E%E7%8E%B0/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -448,10 +451,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Lingo 数学建模</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Latex</a>
               </li>
              
@@ -461,6 +460,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
               </li>
             
             <div class="clearfix"></div>

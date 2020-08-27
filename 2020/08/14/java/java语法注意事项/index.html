@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>java语法注意事项 | 叶鸿的hexo博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录自己容易犯的语法错误，方便自己查阅">
+  <meta name="description" content="一些注意事项，容易犯的语法错误，方便自己查阅">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java语法注意事项">
 <meta property="og:url" content="http://yoursite.com/2020/08/14/java/java%E8%AF%AD%E6%B3%95%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/index.html">
 <meta property="og:site_name" content="叶鸿的hexo博客">
-<meta property="og:description" content="记录自己容易犯的语法错误，方便自己查阅">
+<meta property="og:description" content="一些注意事项，容易犯的语法错误，方便自己查阅">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-14T11:10:40.000Z">
-<meta property="article:modified_time" content="2020-08-14T11:23:23.598Z">
+<meta property="article:modified_time" content="2020-08-16T15:53:26.989Z">
 <meta property="article:author" content="曾叶鸿">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -167,8 +167,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>记录自己容易犯的语法错误，方便自己查阅<br><a id="more"></a></p>
+        <p>一些注意事项，容易犯的语法错误，方便自己查阅<br><a id="more"></a></p>
 <p>java中的注释（/<em> </em>/）不能嵌套，如果想要注释掉一段有注释的内容在IDEA中可以选中，按ctrl+/ 来实现操作</p>
+<p>\u加数字会产生表示特殊字符的转义序列，转义会在解析代码之前得到处理，这很容易带来错误，比如注释中的\users会因为没有跟着16进制数字而报错</p>
+<p>java中整数或指针不能代表布尔值（cpp中0或空指针代表false）</p>
+<p>对于局部变量，如果声明可以看出类型的初始值，可以用var来声明其类型</p>
+<p>如果一个源文件开头指定了所在的包，那么就一定要放在和包匹配的目录上，否则虚拟机就找不到这个包</p>
 
       
 
@@ -262,6 +266,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/08/15/java/java%E8%AF%AD%E6%B3%95%E7%B3%96/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          java语法糖
+        
+      </div>
+    </a>
   
   
     <a href="/2020/08/10/markdown%E5%B8%B8%E5%BF%98%E8%AF%AD%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
@@ -444,10 +457,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Lingo 数学建模</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Latex</a>
               </li>
              
@@ -457,6 +466,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
               </li>
             
             <div class="clearfix"></div>

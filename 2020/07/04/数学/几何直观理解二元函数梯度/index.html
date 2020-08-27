@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>几何直观理解二元函数梯度度 | 叶鸿的hexo博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="许多同学在学习高数时不能理解一个问题\triangledown u&#x3D;\frac{\partial u}{\partial x}\vec{i}+\frac{\partial u}{\partial y}\vec{j}+\frac{\partial u}{\partial z}\vec{k}为什么梯度公式所表示的方向是函数变化率最大的方向？">
+  <meta name="description" content="许多同学在学习高数时不能理解一个问题： \triangledown u&#x3D;\frac{\partial u}{\partial x}\vec{i}+\frac{\partial u}{\partial y}\vec{j}+\frac{\partial u}{\partial z}\vec{k}为什么梯度公式所表示的方向是函数变化率最大的方向？">
 <meta property="og:type" content="article">
 <meta property="og:title" content="几何直观理解二元函数梯度度">
 <meta property="og:url" content="http://yoursite.com/2020/07/04/%E6%95%B0%E5%AD%A6/%E5%87%A0%E4%BD%95%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3%E4%BA%8C%E5%85%83%E5%87%BD%E6%95%B0%E6%A2%AF%E5%BA%A6/index.html">
 <meta property="og:site_name" content="叶鸿的hexo博客">
-<meta property="og:description" content="许多同学在学习高数时不能理解一个问题\triangledown u&#x3D;\frac{\partial u}{\partial x}\vec{i}+\frac{\partial u}{\partial y}\vec{j}+\frac{\partial u}{\partial z}\vec{k}为什么梯度公式所表示的方向是函数变化率最大的方向？">
+<meta property="og:description" content="许多同学在学习高数时不能理解一个问题： \triangledown u&#x3D;\frac{\partial u}{\partial x}\vec{i}+\frac{\partial u}{\partial y}\vec{j}+\frac{\partial u}{\partial z}\vec{k}为什么梯度公式所表示的方向是函数变化率最大的方向？">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-04T09:20:52.000Z">
-<meta property="article:modified_time" content="2020-08-14T11:23:22.304Z">
+<meta property="article:modified_time" content="2020-08-14T11:30:08.393Z">
 <meta property="article:author" content="曾叶鸿">
 <meta property="article:tag" content="数学">
 <meta name="twitter:card" content="summary">
@@ -167,12 +167,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>许多同学在学习高数时不能理解一个问题<script type="math/tex">\triangledown u=\frac{\partial u}{\partial x}\vec{i}+\frac{\partial u}{\partial y}\vec{j}+\frac{\partial u}{\partial z}\vec{k}</script>为什么梯度公式所表示的方向是函数变化率最大的方向？</p>
+        <p>许多同学在学习高数时不能理解一个问题：</p>
+<script type="math/tex; mode=display">\triangledown u=\frac{\partial u}{\partial x}\vec{i}+\frac{\partial u}{\partial y}\vec{j}+\frac{\partial u}{\partial z}\vec{k}</script><p>为什么梯度公式所表示的方向是函数变化率最大的方向？</p>
 <a id="more"></a>
 <hr>
 <h4 id="全微分"><a href="#全微分" class="headerlink" title="全微分"></a>全微分</h4><p>既然涉及到了多元函数，首先我们要了解函数的全微分。</p>
 <ul>
-<li>对于函数$u(x,y,z)$直角坐标系下一个三元函数的全微分公式为<script type="math/tex">du=\frac{\partial u}{\partial x}dx+\frac{\partial u}{\partial y}dy+\frac{\partial u}{\partial z}dz</script>这个公式表明当$x,y,z$变化一个微小的值$dx,dy,dz$时函数$u(x,y,z)$值的变化。</li>
+<li>对于函数$u(x,y,z)$直角坐标系下一个三元函数的全微分公式为<script type="math/tex; mode=display">du=\frac{\partial u}{\partial x}dx+\frac{\partial u}{\partial y}dy+\frac{\partial u}{\partial z}dz</script>这个公式表明当$x,y,z$变化一个微小的值$dx,dy,dz$时函数$u(x,y,z)$值的变化。</li>
 <li>变化的方向与向量$(dx,dy,dz)$同方向，这不难理解。</li>
 <li>变化的大小（或者说是离开$(x,y,z)$点的微小距离）可以用$(dx)^2+(dy)^2+(dz)^2$来描述</li>
 </ul>
@@ -199,8 +200,7 @@
 <li>答案显而易见$(dx,dy,dz)=k(\frac{\partial u}{\partial x}\vec{i}+\frac{\partial u}{\partial y}\vec{j}+\frac{\partial u}{\partial z}\vec{k})$即平行（同向）时最大。</li>
 <li>因为$\vec{i}\cdot \vec{j}=|\vec{i}||\vec{j}|cos&lt;\vec{i},\vec{j}&gt;$,平行时$cos$值最大。</li>
 </ul>
-<hr>
-<h6 id="鄙人不是数学专业，这里只是写一些粗浅的理解，如果能够对各位有帮助，那不甚荣幸；如果有大神发现了文中的错误，鄙人也原因接受批评指正。。。"><a href="#鄙人不是数学专业，这里只是写一些粗浅的理解，如果能够对各位有帮助，那不甚荣幸；如果有大神发现了文中的错误，鄙人也原因接受批评指正。。。" class="headerlink" title="鄙人不是数学专业，这里只是写一些粗浅的理解，如果能够对各位有帮助，那不甚荣幸；如果有大神发现了文中的错误，鄙人也原因接受批评指正。。。"></a>鄙人不是数学专业，这里只是写一些粗浅的理解，如果能够对各位有帮助，那不甚荣幸；如果有大神发现了文中的错误，鄙人也原因接受批评指正。。。</h6>
+
       
 
       
@@ -294,11 +294,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/07/07/java/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/07/08/java/%E9%9B%B6%E6%95%A3%E7%AC%94%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          java学习笔记1
+          java学习笔记2
         
       </div>
     </a>
@@ -479,10 +479,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Lingo 数学建模</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Latex</a>
               </li>
              
@@ -492,6 +488,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
               </li>
             
             <div class="clearfix"></div>
